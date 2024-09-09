@@ -8,30 +8,12 @@ public class Guerreiro extends Personagem {
         super(nome, nivel, hp, atk, def);
         this.forcaExtra = forcaExtra;
         this.armadura = armadura;
+        this.def = def - armadura;
     }
 
     @Override
     public void atacar(Personagem inimigo) {
-        int dano = (this.atk + forcaExtra) - inimigo.def;
-        if (dano > 0) {
-            inimigo.receberDano(dano);
-        }
-    }
-
-    // Getters e Setters
-    public int getForcaExtra() {
-        return forcaExtra;
-    }
-
-    public void setForcaExtra(int forcaExtra) {
-        this.forcaExtra = forcaExtra;
-    }
-
-    public int getArmadura() {
-        return armadura;
-    }
-
-    public void setArmadura(int armadura) {
-        this.armadura = armadura;
+        int dano = Math.max(this.atk + this.forcaExtra - inimigo.def, 0);
+        inimigo.receberDano(dano);
     }
 }

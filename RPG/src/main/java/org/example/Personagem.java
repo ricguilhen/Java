@@ -16,65 +16,32 @@ public abstract class Personagem {
     }
 
     public void atacar(Personagem inimigo) {
-        int dano = this.atk - inimigo.def;
-        if (dano > 0) {
-            inimigo.receberDano(dano);
-        }
+        int dano = Math.max(this.atk - inimigo.def, 0);
+        inimigo.receberDano(dano);
     }
+
+    protected int calcularDano(Personagem inimigo) {
+        return Math.max(this.atk - inimigo.def, 0);
+    }
+
 
     public void receberDano(int dano) {
-        this.hp -= dano;
-        if (this.hp < 0) {
-            this.hp = 0;
-        }
-    }
-
-    public void exibirStatus() {
-        System.out.println(nome + " | Nível: " + nivel + " | HP: " + hp + " | ATK: " + atk + " | DEF: " + def);
+        this.hp = Math.max(this.hp - dano, 0);
     }
 
     public boolean estaVivo() {
         return this.hp > 0;
     }
 
-    // Getters e Setters
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public int getNivel() {
-        return nivel;
-    }
-
-    public void setNivel(int nivel) {
-        this.nivel = nivel;
+    public void exibirStatus() {
+        System.out.println("Nome: " + this.nome);
+        System.out.println("Nível: " + this.nivel);
+        System.out.println("HP: " + this.hp);
+        System.out.println("ATK: " + this.atk);
+        System.out.println("DEF: " + this.def);
     }
 
     public int getHp() {
         return hp;
-    }
-
-    public void setHp(int hp) {
-        this.hp = hp;
-    }
-
-    public int getAtk() {
-        return atk;
-    }
-
-    public void setAtk(int atk) {
-        this.atk = atk;
-    }
-
-    public int getDef() {
-        return def;
-    }
-
-    public void setDef(int def) {
-        this.def = def;
     }
 }

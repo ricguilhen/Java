@@ -11,31 +11,15 @@ public class Mago extends Personagem {
     }
 
     public void lancarMagia(Personagem inimigo) {
-        if (mana >= 10) {
-            int dano = poderMagico - inimigo.def;
-            if (dano > 0) {
-                inimigo.receberDano(dano);
-            }
-            mana -= 10;
-        } else {
-            System.out.println("Mana insuficiente!");
+        int custoMana = 10;
+        if (this.mana >= custoMana) {
+            int danoMagico = Math.max(this.poderMagico - inimigo.def, 0);
+            inimigo.receberDano(danoMagico);
+            this.mana -= custoMana;
         }
     }
 
-    // Getters e Setters
     public int getMana() {
         return mana;
-    }
-
-    public void setMana(int mana) {
-        this.mana = mana;
-    }
-
-    public int getPoderMagico() {
-        return poderMagico;
-    }
-
-    public void setPoderMagico(int poderMagico) {
-        this.poderMagico = poderMagico;
     }
 }
