@@ -8,7 +8,7 @@ public class Guerreiro extends Personagem {
         super(nome, nivel, hp, atk, def);
         this.forcaExtra = forcaExtra;
         this.armadura = armadura;
-        this.def = def - armadura;
+        this.def = def + armadura;
     }
 
     @Override
